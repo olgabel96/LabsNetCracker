@@ -2,15 +2,17 @@ package ru.vsu.lab1;
 
 import org.joda.time.LocalDate;
 
+import java.util.UUID;
+
 public class Person {
     private LocalDate BirthDate;
     private String fam;
-    private int id;
+    private String id;
 
-    public Person(LocalDate birthDate, String fam, int id) {
+    public Person(LocalDate birthDate, String fam) {
         BirthDate = birthDate;
         this.fam = fam;
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
     }
 
     public LocalDate getBirthDate() {
@@ -29,11 +31,11 @@ public class Person {
         this.fam = fam;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
