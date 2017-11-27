@@ -15,6 +15,15 @@ public class Person {
         this.id = UUID.randomUUID().toString();
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "BirthDate=" + BirthDate +
+                ", fam='" + fam + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
     public LocalDate getBirthDate() {
         return BirthDate;
     }
@@ -33,10 +42,6 @@ public class Person {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getAge(){

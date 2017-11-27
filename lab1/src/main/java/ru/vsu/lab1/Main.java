@@ -2,6 +2,8 @@ package ru.vsu.lab1;
 
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
+
 /**
  * Я здесь главная
  */
@@ -13,9 +15,20 @@ public class Main {
         //System.out.println(b);
         Person myPerson=new Person(new LocalDate(1996,03,14),"Belonogova");
         Person myFriend=new Person(new LocalDate(1995,12,8),"Voronkov");
+        Person myTestPerson1=new Person(new LocalDate(2004,02,21),"Morozov");
+        Person myTestPerson2=new Person(new LocalDate(1972,06,28),"Ivanov");
+        Person myTestPerson3=new Person(new LocalDate(1952,10,12),"Petrov");
         System.out.println(myPerson.getAge());
         System.out.println(myFriend.getAge());
-        System.out.println(myPerson.getId());
-        System.out.println(myFriend.getId());
+        PersonRepository myRep=new PersonRepository();
+        myRep.addPerson(myPerson);
+        myRep.addPerson(myFriend);
+        myRep.addPerson(myTestPerson1);
+        myRep.addPerson(myTestPerson2);
+        myRep.addPerson(myTestPerson3);
+        myRep.printRep();
+        System.out.println();
+        myRep.delPerson(myTestPerson2.getId());
+        myRep.printRep();
     }
 }
