@@ -1,6 +1,6 @@
 package ru.vsu.lab1;
 
-public class ComparePersonsByDOB extends PersonComparator{
+public class ComparePersonsByDOB implements PersonComparator{
     @Override
     public int compare(Person p1, Person p2) {
         if(p1.getBirthDate().isEqual(p2.getBirthDate())){

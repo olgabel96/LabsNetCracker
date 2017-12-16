@@ -21,14 +21,14 @@ public class Main {
         System.out.println(myPerson.getAge());
         System.out.println(myFriend.getAge());
         PersonRepository myRep=new PersonRepository();
-        myRep.addPerson(myPerson);
-        myRep.addPerson(myFriend);
-        myRep.addPerson(myTestPerson1);
-        myRep.addPerson(myTestPerson2);
-        myRep.addPerson(myTestPerson3);
+        myRep.add(myPerson);
+        myRep.add(myFriend);
+        myRep.add(myTestPerson1);
+        myRep.add(myTestPerson2);
+        myRep.add(myTestPerson3);
         myRep.printRep();
         System.out.println();
-        myRep.delPerson(myTestPerson2.getId());
+        myRep.delete(3);
         myRep.printRep();
     }
 }

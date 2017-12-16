@@ -1,27 +1,27 @@
 package ru.vsu.lab1;
 
-public class PersonRepository {
-    Person[] rep;
-    int size;
-    int kolPerson;
+public class PersonRepository extends ARep {
+   // Person[] rep;
+   // int size;
+   // int kolPerson;
 
 
     public PersonRepository() {
         this.size = 2;
-        this.kolPerson = 0;
+        this.kol = 0;
         this.rep = new Person[size];
     }
 
-    public Person[] getRep() {
-        return rep;
-    }
+   // public Person[] getRep() {
+    //    return rep;
+    //}
 
     public int getSize() {
         return size;
     }
 
-    public int getKolPerson() { return kolPerson; }
-
+    public int getKolPerson() { return kol; }
+/*
     public void addPerson(Person newPerson) {
         if (kolPerson < size) {
             rep[kolPerson] = newPerson;
@@ -36,7 +36,8 @@ public class PersonRepository {
             rep = rep2;
         }
     }
-
+*/
+/*
     public void delPerson(String idDel) {
         boolean isFind = false;
         int indexDel = -1;
@@ -56,9 +57,10 @@ public class PersonRepository {
             System.out.println("Человек с таким id не найден");
         }
     }
+*/
 
     public void printRep(){
-        for(int i=0;i<kolPerson;i++){
+        for(int i=0;i<kol;i++){
             System.out.println(rep[i].toString());
         }
     }
