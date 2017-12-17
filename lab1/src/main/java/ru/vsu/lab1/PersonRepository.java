@@ -2,6 +2,8 @@ package ru.vsu.lab1;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.LocalDate;
+
 import java.util.Iterator;
 
 
@@ -109,6 +111,55 @@ public class PersonRepository extends ARep implements Iterable<Person> {
     }
 
 
+    /**
+     * if this list contains the specified elements
+     *
+     * @param checker to determine the sorting property
+     * @param value   whose presence in this list is to be tested
+     */
+    private PersonRepository search(IPersonChecker checker, Object value) {
+        LOGGER.debug("search method of PersonRepository is called");
+        PersonRepository found = new PersonRepository();
+        for (Person p : this) {
+            if (checker.check(p, value)) {
+                found.add(p);
+            }
+        }
+        return found;
+    }
+
+    /**
+     * if this repository contains persons with specified id
+     *
+     * @param id whose presence in this list is to be tested
+     * @return PersonRepository with list of Persons found
+     */
+    public PersonRepository searchById(String id) {
+        LOGGER.debug("searchById method of PersonRepository is called");
+        return search(new IdPersonChecker(), id);
+    }
+
+    /**
+     * if this repository contains persons with specified name
+     *
+     * @param name whose presence in this list is to be tested
+     * @return PersonRepository with list of Persons found
+     */
+    public PersonRepository searchByFam(String name) {
+        LOGGER.debug("searchByFam method of PersonRepository is called");
+        return search(new FamPersonChecker(), name);
+    }
+
+    /**
+     * if this repository contains persons with specified birthDate
+     *
+     * @param birthDate whose presence in this list is to be tested
+     * @return PersonRepository with list of Persons found
+     */
+    public PersonRepository searchByDOB(LocalDate birthDate) {
+        LOGGER.debug("searchByDOB method of PersonRepository is called");
+        return search(new DOBPersonChecker(), birthDate);
+    }
 
 
 
