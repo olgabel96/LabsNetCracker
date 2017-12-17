@@ -1,5 +1,5 @@
 package ru.vsu.lab1;
 
-public interface PersonComparator {
+public interface IPersonComparator {
     public int compare(Person p1,Person p2);
 }

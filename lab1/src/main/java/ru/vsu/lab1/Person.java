@@ -1,7 +1,7 @@
 package ru.vsu.lab1;
 
 import org.joda.time.LocalDate;
-
+import org.joda.time.Period;
 import java.util.UUID;
 
 public class Person {
@@ -45,15 +45,7 @@ public class Person {
     }
 
     public int getAge(){
-        int year=LocalDate.now().getYear()-BirthDate.getYear();
-        if(LocalDate.now().getMonthOfYear()<BirthDate.getMonthOfYear()){
-            year--;
-        }
-        if(LocalDate.now().getMonthOfYear()==BirthDate.getMonthOfYear()){
-            if(LocalDate.now().getDayOfMonth()<BirthDate.getDayOfMonth()){
-                year--;
-            }
-        }
-        return year;
+        Period period = new Period(BirthDate, LocalDate.now());
+        return period.getYears();
     }
 }

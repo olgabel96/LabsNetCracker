@@ -30,5 +30,10 @@ public class Main {
         System.out.println();
         myRep.delete(3);
         myRep.printRep();
+
+        System.out.println(myRep.getKolPerson());
+
+        myRep.sortByFam();
+        myRep.printRep();
     }
 }
