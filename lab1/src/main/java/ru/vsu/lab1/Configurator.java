@@ -3,6 +3,9 @@ package ru.vsu.lab1;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.vsu.sorters.BubbleSorter;
+import ru.vsu.sorters.IPersonListSorter;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -29,7 +32,7 @@ public class Configurator {
         try {
             properties.load(new FileInputStream(new File(PATH)));
             sortProperty = properties.getProperty("SORTER");
-            Class name = Class.forName("ru.vsu.lab1."+sortProperty + "Sorter");
+            Class name = Class.forName("ru.vsu.sorters."+sortProperty + "Sorter");
             return this.sorter = (IPersonListSorter) name.newInstance();
 
         } catch (FileNotFoundException e) {
@@ -42,7 +45,7 @@ public class Configurator {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Class " + sortProperty + "Sorter not found");
+            LOGGER.error("Class " + "ru.vsu.sorters."+sortProperty + "Sorter not found");
             e.printStackTrace();
         }
         return new BubbleSorter();

@@ -1,8 +1,19 @@
-package ru.vsu.lab1;
+package ru.vsu.repositories;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
+import ru.vsu.checkers.DOBPersonChecker;
+import ru.vsu.checkers.FamPersonChecker;
+import ru.vsu.checkers.IPersonChecker;
+import ru.vsu.checkers.IdPersonChecker;
+import ru.vsu.comparator.ComparePersonsByDOB;
+import ru.vsu.comparator.ComparePersonsByFam;
+import ru.vsu.comparator.ComparePersonsById;
+import ru.vsu.entities.Person;
+import ru.vsu.lab1.Configurator;
+import ru.vsu.lab1.*;
+import ru.vsu.sorters.IPersonListSorter;
 
 import java.util.Iterator;
 

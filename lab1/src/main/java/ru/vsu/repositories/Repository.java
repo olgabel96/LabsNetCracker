@@ -1,4 +1,4 @@
-package ru.vsu.lab1;
+package ru.vsu.repositories;
 
 public interface Repository<T> {
     public boolean add(T item);

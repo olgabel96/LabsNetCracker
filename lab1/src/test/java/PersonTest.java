@@ -1,6 +1,6 @@
 import org.joda.time.LocalDate;
 import org.junit.Test;
-import ru.vsu.lab1.Person;
+import ru.vsu.entities.Person;
 
 import static org.junit.Assert.assertEquals;
 

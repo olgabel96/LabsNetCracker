@@ -1,4 +1,4 @@
-package ru.vsu.lab1;
+package ru.vsu.entities;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Period;

@@ -1,6 +1,7 @@
-package ru.vsu.lab1;
+package ru.vsu.checkers;
 
-import org.joda.time.LocalDate;
+import ru.vsu.entities.Person;
+
 
 public class DOBPersonChecker implements IPersonChecker {
     @Override

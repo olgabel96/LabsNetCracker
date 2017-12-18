@@ -1,4 +1,6 @@
-package ru.vsu.lab1;
+package ru.vsu.comparator;
+
+import ru.vsu.entities.Person;
 
 public class ComparePersonsByFam implements IPersonComparator {
     @Override

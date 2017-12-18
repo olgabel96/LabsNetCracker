@@ -1,6 +1,8 @@
-package ru.vsu.lab1;
+package ru.vsu.comparator;
 
-public class ComparePersonsByDOB implements IPersonComparator{
+import ru.vsu.entities.Person;
+
+public class ComparePersonsByDOB implements IPersonComparator {
     @Override
     public int compare(Person p1, Person p2) {
         if(p1.getBirthDate().isEqual(p2.getBirthDate())){

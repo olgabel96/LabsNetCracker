@@ -1,7 +1,8 @@
-package ru.vsu.lab1;
+package ru.vsu.repositories;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.vsu.entities.Person;
 
 public abstract class ARep implements Repository<Person> {
     private static final Logger LOGGER = LogManager.getLogger(PersonRepository.class.getName());
@@ -69,6 +70,33 @@ public abstract class ARep implements Repository<Person> {
     public Person[] getAll() {
         LOGGER.debug("getAll method is called");
         return rep;
+    }
+
+    /**
+     * Replaces the element at the specified position in this list with
+     * the specified element.
+     *
+     * @param index  index of the element to replace
+     * @param person element to be stored at the specified position
+     * @return true if success
+     */
+    public boolean set(int index, Person person) {
+        LOGGER.debug("set method of PersonRepository is called");
+        if (index < size && index >= 0) {
+            this.rep[index] = person;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if this list contains the specified element.
+     *
+     * @param p element whose presence in this list is to be tested
+     * @return true if this list contains the specified element
+     */
+    public boolean contains(Person p) {
+        return indexOf(p) >= 0;
     }
 
     /**

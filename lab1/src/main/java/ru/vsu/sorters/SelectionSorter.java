@@ -1,4 +1,9 @@
-package ru.vsu.lab1;
+package ru.vsu.sorters;
+
+import ru.vsu.comparator.IPersonComparator;
+import ru.vsu.entities.Person;
+import ru.vsu.repositories.PersonRepository;
+
 
 public class SelectionSorter implements IPersonListSorter {
 

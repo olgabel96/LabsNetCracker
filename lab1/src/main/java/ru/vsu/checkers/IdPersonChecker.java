@@ -1,4 +1,6 @@
-package ru.vsu.lab1;
+package ru.vsu.checkers;
+
+import ru.vsu.entities.Person;
 
 public class IdPersonChecker implements IPersonChecker {
     @Override
