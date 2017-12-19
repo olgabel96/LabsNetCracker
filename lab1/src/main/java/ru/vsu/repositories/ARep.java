@@ -3,16 +3,47 @@ package ru.vsu.repositories;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.vsu.entities.Person;
+import ru.vsu.sorters.BubbleSorter;
+import ru.vsu.sorters.ISorter;
 
-public abstract class ARep implements Repository<Person> {
+import java.util.Iterator;
+
+public abstract class ARep<T> implements IRepository<T>, Iterable<T> {
+    protected ISorter sorter=new BubbleSorter();
+    protected Object[] rep;
     private static final Logger LOGGER = LogManager.getLogger(PersonRepository.class.getName());
-    private static final int MAX_CAPACITY = Integer.MAX_VALUE - 1;
-    Person[] rep;
-    int size;
+    protected static final int MAX_CAPACITY = Integer.MAX_VALUE - 1;
+    protected static final int DEFAULT_CAPACITY = 2;
+
+    //int size;
     /**
      * The size of the rep (the number of elements it contains).
      */
     int kol;
+
+    /**
+     * Returns the number of elements in this list.
+     *
+     * @return the number of elements in this list
+     */
+    @Override
+    public int getKol() {
+        return kol;
+    }
+
+    public void setSorter(ISorter sorter) {
+        this.sorter = sorter;
+    }
+
+    /**
+     * Returns true if this list contains no elements.
+     *
+     * @return true if this list contains no elements
+     */
+    @Override
+    public boolean isEmpty() {
+        return kol==0;
+    }
 
     /**
      * Appends element to the end of this list.
@@ -21,22 +52,21 @@ public abstract class ARep implements Repository<Person> {
      * @return true if success
      */
     @Override
-    public boolean add(Person item) {
+    public boolean add(T item) {
         LOGGER.debug("add method is called");
-        if (kol < size) {
-            rep[kol] = item;
-            kol++;
-        } else {
-            if (MAX_CAPACITY - size > 0) {
-                LOGGER.info("Repository size increased");
-                size = size + 2;
-                Person[] rep2;
-                rep2 = new Person[size];
+        if (kol < rep.length) {
+            rep[kol++] = item;
 
-                System.arraycopy(rep, 0, rep2, 0, kol);
-                rep2[kol] = item;
-                kol++;
-                rep = rep2;
+        } else {
+            if (MAX_CAPACITY - kol> 0) {
+                LOGGER.info("Repository size increased");
+                Object[] rep2 = new Object[kol+2];
+                for (int i = 0; i < kol; i++) {
+                    rep2[i] = rep[i];
+                }
+                rep2[kol++] = item;
+                this.rep = rep2;
+
             }else{
                 return false;
             }
@@ -51,11 +81,11 @@ public abstract class ARep implements Repository<Person> {
      * @return the element at the specified position in this list
      */
     @Override
-    public Person get(int index) {
+    public T get(int index) {
 
         LOGGER.debug("get method is called");
-        if (index < size) {
-            return rep[index];
+        if (index < kol) {
+            return (T)rep[index];
         } else {
             return null;
         }
@@ -67,9 +97,9 @@ public abstract class ARep implements Repository<Person> {
      * @return Array
      */
     @Override
-    public Person[] getAll() {
+    public T[] getAll() {
         LOGGER.debug("getAll method is called");
-        return rep;
+        return (T[])rep;
     }
 
     /**
@@ -77,13 +107,14 @@ public abstract class ARep implements Repository<Person> {
      * the specified element.
      *
      * @param index  index of the element to replace
-     * @param person element to be stored at the specified position
+     * @param item element to be stored at the specified position
      * @return true if success
      */
-    public boolean set(int index, Person person) {
+    @Override
+    public boolean set(int index, T item) {
         LOGGER.debug("set method of PersonRepository is called");
-        if (index < size && index >= 0) {
-            this.rep[index] = person;
+        if (index < kol && index >= 0) {
+            this.rep[index] = item;
             return true;
         }
         return false;
@@ -92,11 +123,12 @@ public abstract class ARep implements Repository<Person> {
     /**
      * Returns true if this list contains the specified element.
      *
-     * @param p element whose presence in this list is to be tested
+     * @param item element whose presence in this list is to be tested
      * @return true if this list contains the specified element
      */
-    public boolean contains(Person p) {
-        return indexOf(p) >= 0;
+    @Override
+    public boolean contains(T item) {
+        return indexOf(item) >= 0;
     }
 
     /**
@@ -104,10 +136,10 @@ public abstract class ARep implements Repository<Person> {
      * in this list, or -1 if this list does not contain the element.
      */
     @Override
-    public int indexOf(Person p) {
+    public int indexOf(T item) {
         LOGGER.debug("indexOf method is called");
-        for (int i = 0; i < size; i++) {
-            if (p.equals(rep[i])) {
+        for (int i = 0; i < kol; i++) {
+            if (item.equals(rep[i])) {
                 return i;
             }
         }
@@ -143,5 +175,24 @@ public abstract class ARep implements Repository<Person> {
         }
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new RepositoryIterator();
+    }
+
+    class RepositoryIterator implements Iterator<T> {
+
+        int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex != kol;
+        }
+
+        @Override
+        public T next() {
+            return (T)rep[currentIndex++];
+        }
+    }
 
 }

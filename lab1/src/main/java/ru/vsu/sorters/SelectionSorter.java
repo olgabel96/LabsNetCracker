@@ -1,16 +1,17 @@
 package ru.vsu.sorters;
 
-import ru.vsu.comparator.IPersonComparator;
+import ru.vsu.comparator.IComparator;
+
 import ru.vsu.entities.Person;
 import ru.vsu.repositories.PersonRepository;
 
 
-public class SelectionSorter implements IPersonListSorter {
+public class SelectionSorter<T> implements ISorter<T> {
 
     @Override
-    public Person[] sort(Person[] personList, int size, IPersonComparator comparator) {
+    public T[] sort(T[] personList, int size, IComparator comparator) {
         for (int i = 0; i < size; i++) {
-            Person min = personList[i];
+            T min = personList[i];
             int min_i = i;
             for (int j = i + 1; j < size; j++) {
                 if (comparator.compare(min, personList[j]) > 0) {
@@ -19,7 +20,7 @@ public class SelectionSorter implements IPersonListSorter {
                 }
             }
             if (i != min_i) {
-                Person tmp = personList[i];
+                T tmp = personList[i];
                 personList[i] = personList[min_i];
                 personList[min_i] = tmp;
             }

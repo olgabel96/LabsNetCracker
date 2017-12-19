@@ -40,9 +40,7 @@ public class Person {
         this.fam = fam;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId(){ return id;}
 
     public int getAge(){
         Period period = new Period(BirthDate, LocalDate.now());

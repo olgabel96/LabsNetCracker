@@ -31,14 +31,13 @@ public class Main {
         myRep.delete(3);
         myRep.printRep();
 
-        System.out.println(myRep.getKolPerson());
+        System.out.println(myRep.getKol());
 
         myRep.sortByFam();
         myRep.printRep();
 
         myRep.searchByFam("Voronkov").printRep();
         myRep.searchByDOB(new LocalDate(1996,03,14)).printRep();
-        System.out.println(myTestPerson2.getId());
-        myRep.searchById(myTestPerson2.getId()).printRep();
+
     }
 }

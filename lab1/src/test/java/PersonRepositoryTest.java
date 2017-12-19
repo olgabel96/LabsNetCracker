@@ -39,7 +39,7 @@ public class PersonRepositoryTest {
     public void testSize(){
         PersonRepository repository = new PersonRepository();
         repository.add(myPerson);
-        assertTrue(repository.getKolPerson() == 1);
+        assertTrue(repository.getKol() == 1);
     }
 
     @Test
@@ -99,22 +99,7 @@ public class PersonRepositoryTest {
         assertTrue(actual.contains(myTestPerson3));
     }
 
-    @Test
-    public void testDelete(){
-        PersonRepository actual = new PersonRepository();
-        actual.add(myTestPerson1);
-        actual.add(myTestPerson2);
-        actual.add(myTestPerson3);
-        actual.delete(2);
 
-        PersonRepository expected = new PersonRepository();
-        expected.add(myTestPerson1);
-        expected.add(myTestPerson2);
-
-        assertEquals(actual.getKolPerson(), expected.getKolPerson());
-        assertEquals(actual.getAll()[0], expected.getAll()[0]);
-        assertEquals(actual.getAll()[1], expected.getAll()[1]);
-    }
 
     @Test
     public void testIndexOf(){
